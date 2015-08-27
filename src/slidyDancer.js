@@ -12,7 +12,6 @@ SlidyDancer.prototype.oldStep = SlidyDancer.prototype.step;
 
 
 SlidyDancer.prototype.step = function() {
-  this.oldStep();
   this.$node.animate({
     left: "+="+(Math.random()*100)+"px",
     top: "+="+(Math.random()*100)+"px"
@@ -21,4 +20,5 @@ SlidyDancer.prototype.step = function() {
     left: "-="+(Math.random()*100)+"px",
     top: "-="+(Math.random()*100)+"px"
   }, this.timeBetweenSteps/2)
+  this.oldStep();
 };
