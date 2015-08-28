@@ -1,5 +1,6 @@
-var Dancer = function(top, left, timeBetweenSteps) {
-  this.$node = $('<span class="dancer"></span>');
+var Dancer = function(top, left, timeBetweenSteps, node) {
+  this.$node = node || $('<span class="dancer"></span>');
+  this.$node.data('id', dancers.length);
   this.timeBetweenSteps = timeBetweenSteps;
   this.top = top;
   this.left = left;
@@ -21,7 +22,6 @@ Dancer.prototype.updatePos = function(){
 }
 
 Dancer.prototype.step = function() {
-  // this.updatePos();
   if (keepDancing) {
     setTimeout(this.step.bind(this), this.timeBetweenSteps);
   }
@@ -47,18 +47,3 @@ Dancer.prototype.reposition = function(top, left, callback) {
     top: "+="+(moveTop)+"px"
   }, this.timeBetweenSteps * 2);
 };
-
-
-/*
-identify another dancer and get their setPosition
-math out the halfway point
-  from 1 to 10
-    setTimeout(move element 10% of the way to the halfway point, timeBetweenSteps)
-    
-
-
-call step()
-if we reach halfway point
-  break
-else
-*/
