@@ -47,3 +47,7 @@ Dancer.prototype.reposition = function(top, left, callback) {
     top: "+="+(moveTop)+"px"
   }, this.timeBetweenSteps * 2);
 };
+
+Dancer.prototype.collision = function(){
+  console.log("OMG CRASH");
+}
