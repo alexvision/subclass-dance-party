@@ -6,6 +6,7 @@ var Dancer = function(top, left, timeBetweenSteps, node) {
   this.left = left;
   this.setPosition(top, left);
   this.step();
+  this.crashCount = 0;
 };
 
 Dancer.prototype.setPosition = function(top, left) {
@@ -49,5 +50,6 @@ Dancer.prototype.reposition = function(top, left, callback) {
 };
 
 Dancer.prototype.collision = function(){
-  console.log("OMG CRASH");
+  this.crashCount++;
+  console.log("OMG CRASH", this.crashCount);
 }

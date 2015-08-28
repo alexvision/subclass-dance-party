@@ -72,23 +72,26 @@ $(document).ready(function(){
     var widthCount = Math.floor(width/spacing);
     var map = [];
 
-    for(var i = 0; i < heightCount; i++){
-      map.push(new Array(widthCount));
+    for(var i = 0; i <= heightCount; i++){
+      map.push(new Array(widthCount+1));
     }
     dancers.forEach(function(dancer){
-      var roundedTop = Math.floor(dancer.top/spacing);
-      var roundedLeft = Math.floor(dancer.left/spacing);
-        
-      if(!map[roundedTop][roundedLeft]){
-        map[roundedTop][roundedLeft] = dancer;
-      } else { 
-        dancer.collision()
-        map[roundedTop][roundedLeft].collision();
-      }
+      var roundedTop = Math.floor(dancer.$node.position().top/spacing);
+      var roundedLeft = Math.floor(dancer.$node.position().left/spacing);
+      
+      if (!(roundedTop > heightCount || roundedTop < 0 || roundedLeft > widthCount || roundedLeft < 0)) {
+
+        if(map[roundedTop][roundedLeft]){
+          dancer.collision()
+          map[roundedTop][roundedLeft].collision();
+        } else { 
+          map[roundedTop][roundedLeft] = dancer;
+        }
+      }  
 
     });
     delete map;
-  }, 100)
+  }, 50);
 
 });
 
